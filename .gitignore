@@ -1,0 +1,20 @@
+# Laravel
+/employee_manage__backend/vendor/
+/employee_manage__backend/node_modules/
+/employee_manage__backend/storage/*.key
+/employee_manage__backend/.env
+
+# Vue
+/employee_manage__frontend/node_modules/
+/employee_manage__frontend/dist/
+/employee_manage__frontend/.env
+
+# Docker
+docker/dbdata/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Others
+*.log
