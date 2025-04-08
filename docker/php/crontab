@@ -1,2 +1,4 @@
-# filepath: /path/to/your/docker/php/crontab
+# filepath: /docker/php/crontab
 * * * * * www-data php /var/www/artisan schedule:run >> /dev/null 2>&1
+
+* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1

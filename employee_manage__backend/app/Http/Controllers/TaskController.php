@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\CreateTaskToMembers;
+use App\Notifications\TaskCreatedToUser;
 use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
 
@@ -37,6 +39,12 @@ class TaskController extends Controller
         // Добавление участников в таблицу task_user (связь многие ко многим)
         if ($participants) {
             $task->members()->attach($participants);
+        }
+
+        $user->notify(new TaskCreatedToUser($task));
+
+        foreach($task->members as $member){
+            $member->notify(new CreateTaskToMembers($task));
         }
         
         return response()->json([
