@@ -20,4 +20,9 @@ export default defineConfig({
     port: 5173,        // Порт, на котором будет работать приложение
     strictPort: true,  // Принудительное использование этого порта
   },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: false
+  }
 })
