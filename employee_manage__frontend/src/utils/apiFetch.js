@@ -19,7 +19,7 @@ export default async function (method, route, body = null, isBlob = false) {
         }
     }
 
-    const response = await fetch(`http://localhost:8080/api${route}`, options)
+    const response = await fetch(`http://194.190.153.171:8080/api${route}`, options)
     let result = null
 
     if (response.status === 401) {
