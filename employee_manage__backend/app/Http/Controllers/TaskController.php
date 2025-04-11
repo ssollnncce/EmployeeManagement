@@ -174,8 +174,8 @@ class TaskController extends Controller
 
         // Используем where с замыканием для группировки условий
         $todayTasks = Task::where(function($query) use ($today) {
-                $query->whereDate('start_date', $today)
-                      ->orWhereDate('end_date', $today);
+                $query->whereDate('start_date',  $today)
+                      ->orWhereDate('end_date', '<=',$today);
             })
             ->whereHas('members', function ($query) use ($user) {
                 $query->where('user_id', $user->id);
