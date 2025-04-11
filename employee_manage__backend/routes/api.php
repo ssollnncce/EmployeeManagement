@@ -6,8 +6,15 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\NotoficationController;
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+//Main
+Route::get('/user', [AuthController::class, 'GetUser'])->middleware('auth:sanctum');
+Route::get('/today-tasks', [TaskController::class, 'GetMainPageTasks'])->middleware('auth:sanctum');
+Route::get('/departments', [EmployeeController::class, 'GetDepartments'])->middleware('auth:sanctum');
 
 //Authorize
     //Log In

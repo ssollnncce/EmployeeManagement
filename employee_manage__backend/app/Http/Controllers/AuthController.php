@@ -27,7 +27,8 @@ class AuthController extends Controller
             
             return response()->json([
                 'message' => 'Login succesfull',
-                'Full name' => $user->full_name,
+                'id' => $user->id,
+                'FullName' => $user->full_name,
                 'Token' => $user->createToken('access_token')->plainTextToken
             ]);
             
@@ -63,5 +64,20 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Successfully logged out'
         ]);
+    }
+
+    public function GetUser (){
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json(['message' => 'Unauthenticated'], 401);
+        }
+
+        return response()->json([
+            'data' => [
+                'id' => $user->id,
+                'first_name' => $user->first_name
+            ]
+        ], 200);
     }
 }

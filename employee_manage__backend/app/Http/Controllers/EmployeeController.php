@@ -6,11 +6,17 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
+use App\Models\Department;
 
 
 class EmployeeController extends Controller
 {
+
+    public function GetDepartments(){
+        $departments = Department::all();
+        return response()->json($departments);
+    }
+
     public function GetAllEmployees (Request $request){
         $user = Auth::user();
 
@@ -32,6 +38,7 @@ class EmployeeController extends Controller
 
         $formattedEmployees = $employees->map(function ($employee) {
             return [
+                'id' => $employee->id,
                 'Name' => $employee->full_name,  // Доступ к полю модели
                 'Position' => $employee->position,
                 'Manager' => $employee->manager ? $employee->manager->full_name : null,  // Проверка на наличие менеджера
@@ -61,11 +68,11 @@ class EmployeeController extends Controller
         }
 
         return response()->json([
-            'Full name' => $user->full_name,
+            'FullName' => $user->full_name,
             'Email' => $user->email,
             'Phone' => $user->phone_number,
             'Position' => $user->position, // Assuming there's a position field
-            'Department' => $user->department_name->name, // Assuming there's a department field
+            'Department' => $user->department_name, // Assuming there's a department field
             'Manager' => $user->manager ? $user->manager->full_name : null, // Manager's full name
             'Work mode' => $workFormat
         ], 200);

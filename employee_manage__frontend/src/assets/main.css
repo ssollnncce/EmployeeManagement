@@ -1,35 +1,93 @@
-@import './base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+@font-face {
+  font-family: 'MyFont';
+  src: url('@/assets/fonts/Manrope-VariableFont_wght.ttf') format('ttf');
   font-weight: normal;
+  font-style: normal;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+body {
+  font-family: 'MyFont', sans-serif;
+  margin: 0;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.input-object{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+input{
+  border-radius: 0.75rem;
+  font-size: 14px;
+  background-color: #F6F6F6;
+  border: none;
+  padding: 14px 16px;
+}
+h2{
+  font-size: 30px;
+  margin: 0;
+  font-weight: 500;
+}
+h3{
+  font-size: 24px;
+  margin: 0;
+  font-weight: 500;
+}
+p{
+  font-size: 14px;
+  color: #838383;
+}
+button{
+  padding: 16px 24px;
+  background-color: #F7941D;
+  border-radius: 0.75rem;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.btn-disabled{
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+label{
+  font-weight: bold;
+}
+.display-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+.content-container {
+  flex: 1;
+  margin-left: 20%; /* Ширина навигации */
+  padding: 32px;
+  box-sizing: border-box;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+.content-container__header {
+  display: flex;
+  justify-content: space-between;
+}
+.content-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 20%;
+  padding: 32px;
+  box-sizing: border-box;
+  padding-top: 32px;
+  gap: 1rem;
+}
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .content-container {
+      margin-left: 0;
+      width: 100%;
   }
 }

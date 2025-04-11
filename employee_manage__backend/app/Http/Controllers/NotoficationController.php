@@ -39,6 +39,7 @@ class NotoficationController extends Controller
             // Собираем уведомления и форматируем дату и сообщение
             $notifications = $unreadNotifications->map(function ($notification) use ($formatDate) {
                 return [
+                    'id' => $notification->id,
                     'message' => $notification->data['message'],
                     'date' => $formatDate($notification->created_at),
                 ];
@@ -46,9 +47,14 @@ class NotoficationController extends Controller
 
             return response()->json([
                 'Message' => 'У вас есть ' . $unreadNotifications->count() . ' уведомлений',
-                'Unread notifications' => $notifications,
-                'Read notifications' => $readNotifications->map(function ($notification) use ($formatDate) {
+                'data' => $user->notifications->map(function($notify){
+                     return ['read_at' => $notify->read_at,
+                            'notification' => $notify];
+                }),
+                'Unread_notifications' => $notifications,
+                'Read_notifications' => $readNotifications->map(function ($notification) use ($formatDate) {
                     return [
+                        'id' => $notification->id,
                         'message' => $notification->data['message'],
                         'date' => $formatDate($notification->created_at),
                     ];
